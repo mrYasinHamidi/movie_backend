@@ -1,5 +1,6 @@
 import 'package:dart_frog/dart_frog.dart';
 
 Response onRequest(RequestContext context) {
-  return Response(body: 'Welcome to fucking Dart Frog!');
+  final counter = context.read<int>();
+  return Response(body: 'You opened this page for $counter times !!!');
 }
