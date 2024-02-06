@@ -1,6 +1,8 @@
 import 'package:dart_frog/dart_frog.dart';
+import 'package:movie_backend/services/database_service.dart';
 
-Response onRequest(RequestContext context) {
-  final counter = context.read<int>();
-  return Response(body: 'You opened this page for $counter times !!!');
+Future<Response> onRequest(RequestContext context) async {
+  final db = await context.read<Future<DatabaseService>>();
+  final users =  await db.users.find().toList();
+  return Response(body: '${users}');
 }
