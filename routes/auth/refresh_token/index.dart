@@ -24,8 +24,8 @@ FutureOr<Response> _post(RequestContext context) async {
 
   return Response.json(
     body: {
-      'access_token': TokenHelper.generateTokenFromToken(refreshToken, 1),
-      'refresh_token': TokenHelper.generateTokenFromToken(refreshToken, 10),
+      'access_token': TokenHelper.generateTokenFromToken(refreshToken, 30),
+      'refresh_token': TokenHelper.generateTokenFromToken(refreshToken, 300),
     },
   );
 }

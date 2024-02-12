@@ -29,8 +29,8 @@ FutureOr<Response> _post(RequestContext context) async {
   if (user != null) {
     return Response.json(
       body: {
-        'access_token': TokenHelper.generateToken(user.id.oid, 1),
-        'refresh_token': TokenHelper.generateToken(user.id.oid, 10),
+        'access_token': TokenHelper.generateToken(user.id.oid, 30),
+        'refresh_token': TokenHelper.generateToken(user.id.oid, 300),
       },
     );
   }
