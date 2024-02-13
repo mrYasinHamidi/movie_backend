@@ -14,8 +14,8 @@ class AuthenticationService {
 
   ///verify email and password
   ///if email and password are correct the user will returned
-  Future<UserModel?> getUserByCredential(String email, String password) async {
-    final json = await database.users.findOne({'email': email});
+  Future<UserModel?> getUserByCredential(String username, String password) async {
+    final json = await database.users.findOne({'username': username});
     if (json != null) {
       final user = UserModel.fromJson(json);
       if (user.password == password) return user;

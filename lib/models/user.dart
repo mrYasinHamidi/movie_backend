@@ -9,6 +9,7 @@ part 'user.g.dart';
 class UserModel extends Equatable {
   /// user constructor
   const UserModel({
+    required this.username,
     required this.email,
     required this.password,
     required this.id,
@@ -24,6 +25,9 @@ class UserModel extends Equatable {
   @JsonKey(name: '_id')
   @ObjectIdConvertor()
   final ObjectId id;
+
+  ///username of user
+  final String username;
 
   ///email of user
   final String email;

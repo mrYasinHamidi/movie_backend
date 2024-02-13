@@ -16,15 +16,15 @@ Future<Response> onRequest(RequestContext context) async {
 FutureOr<Response> _post(RequestContext context) async {
   final data = await context.request.json() as Map<String, dynamic>;
 
-  final email = data['email'] as String?;
+  final username = data['username'] as String?;
   final password = data['password'] as String?;
 
-  if (email == null || password == null) {
+  if (username == null || password == null) {
     return Response(statusCode: HttpStatus.badRequest);
   }
 
   final authenticator = await context.read<Future<AuthenticationService>>();
-  final user = await authenticator.getUserByCredential(email, password);
+  final user = await authenticator.getUserByCredential(username, password);
 
   if (user != null) {
     return Response.json(

@@ -9,6 +9,7 @@ class UserEntity {
   /// user constructor
   const UserEntity({
     required this.email,
+    required this.username,
     required this.id,
   });
 
@@ -17,6 +18,7 @@ class UserEntity {
     return UserEntity(
       email: model.email,
       id: model.id.oid,
+      username: model.username,
     );
   }
 
@@ -28,6 +30,9 @@ class UserEntity {
 
   ///id
   final String id;
+
+  ///username
+  final String username;
 
   ///email of user
   final String email;
