@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_frog/dart_frog.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
@@ -18,9 +20,24 @@ class DatabaseService {
 
   ///initializing db
   Future<void> ensureInitialized() async {
-    _db = await Db.create(
-      'mongodb+srv://yasinhamidi50:z7kotLEgdDxNnSuU@cluster0.evjogec.mongodb.net/movie/?retryWrites=true&w=majority',
-    );
+    final url = Platform.environment['DB_URL'];
+    final user = Platform.environment['DB_USER'];
+    final password = Platform.environment['DB_PASSWORD'];
+    if (user != null && url != null && password != null) {
+      _db = await Db.create(
+        url
+            .replaceFirst(
+              '<USER>',
+              user,
+            )
+            .replaceFirst(
+              '<PASSWORD>',
+              password,
+            ),
+      );
+    } else {
+      _db = await Db.create('mongodb://localhost:27017/user');
+    }
   }
 
   ///open connection to mongo
