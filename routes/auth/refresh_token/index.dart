@@ -14,7 +14,7 @@ Future<Response> onRequest(RequestContext context) async {
 
 FutureOr<Response> _post(RequestContext context) async {
   final data = await context.request.json() as Map<String, dynamic>;
-  final refreshToken = data['refresh_token'] as String?;
+  final refreshToken = data['refreshToken'] as String?;
   if (refreshToken == null) {
     return Response(
       statusCode: HttpStatus.unauthorized,
@@ -24,8 +24,8 @@ FutureOr<Response> _post(RequestContext context) async {
 
   return Response.json(
     body: {
-      'access_token': TokenHelper.generateTokenFromToken(refreshToken, 30),
-      'refresh_token': TokenHelper.generateTokenFromToken(refreshToken, 300),
+      'accessToken': TokenHelper.generateTokenFromToken(refreshToken, 30),
+      'refreshToken': TokenHelper.generateTokenFromToken(refreshToken, 300),
     },
   );
 }
